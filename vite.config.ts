@@ -11,6 +11,18 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), tsconfigPaths()],
-    server: allowedHosts.length > 0 ? { allowedHosts } : undefined,
+    server: {
+      host: "0.0.0.0",
+      port: 5173,
+      strictPort: true,
+      watch: {
+        usePolling: true,
+        interval: 100,
+      },
+      fs: {
+        allow: ["/app"],
+      },
+      ...(allowedHosts.length > 0 ? { allowedHosts } : {}),
+    },
   };
 });
