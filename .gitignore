@@ -1,0 +1,30 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+
+# Coverage
+coverage/
+
+# Codex
+.codex/
+
+# Logs
+*.log

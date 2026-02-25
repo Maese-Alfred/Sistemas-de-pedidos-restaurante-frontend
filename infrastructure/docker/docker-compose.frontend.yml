@@ -1,0 +1,18 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: orders-frontend
+    ports:
+      - "8080:8080"
+    environment:
+      - VITE_API_BASE_URL=${VITE_API_BASE_URL:-http://host.docker.internal:8081}
+      - VITE_KITCHEN_TOKEN_HEADER=${VITE_KITCHEN_TOKEN_HEADER:-X-Kitchen-Token}
+      - VITE_KITCHEN_PIN=${VITE_KITCHEN_PIN:-1234}
+      - VITE_KITCHEN_FIXED_TOKEN=${VITE_KITCHEN_FIXED_TOKEN:-}
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
