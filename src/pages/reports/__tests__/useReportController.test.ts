@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { renderHook, act, waitFor } from "@testing-library/react";
+import { renderHook, act } from "@testing-library/react";
 import { useReportController } from "@/pages/reports/useReportController";
 import { OrdersReportFacade } from "@/pages/reports/OrdersReportFacade";
 import type { ReportResponse } from "@/api/contracts";
