@@ -132,11 +132,11 @@ jobs:
   # ─────────────────────────────────────────────────────────────
   # 4. SonarCloud analysis (MANDATORY)
   # ─────────────────────────────────────────────────────────────
+  # Quality Gate enforced: 80% coverage on new code, A rating
   sonarcloud:
     name: ☁️ SonarCloud
     needs: test
     runs-on: ubuntu-latest
-    continue-on-error: true    # TODO: remove after first successful scan on main
     steps:
       # fetch-depth: 0 is REQUIRED — Sonar needs full history for
       # new-code detection and blame information.
