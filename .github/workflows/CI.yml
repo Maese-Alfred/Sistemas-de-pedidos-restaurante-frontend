@@ -73,7 +73,7 @@ jobs:
           key: nm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: ESLint
-        run: npx eslint .
+        run: npm run lint
 
   # ─────────────────────────────────────────────────────────────
   # 2b. TypeScript type-check (parallel with lint)
@@ -95,7 +95,7 @@ jobs:
           key: nm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: TypeScript compile check
-        run: npx tsc -b
+        run: npx --no-install tsc -b
 
   # ─────────────────────────────────────────────────────────────
   # 3. Tests + Coverage
@@ -119,7 +119,7 @@ jobs:
           key: nm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
       - name: Run Vitest with coverage
-        run: npx vitest run --coverage
+        run: npm run test:coverage
 
       # Persist coverage for SonarCloud and artifact upload
       - name: Upload coverage report
