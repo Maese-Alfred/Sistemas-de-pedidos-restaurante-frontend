@@ -136,6 +136,7 @@ jobs:
     name: ☁️ SonarCloud
     needs: test
     runs-on: ubuntu-latest
+    continue-on-error: true    # TODO: remove after first successful scan on main
     steps:
       # fetch-depth: 0 is REQUIRED — Sonar needs full history for
       # new-code detection and blame information.
