@@ -344,7 +344,7 @@ describe('kitchenAuth store', () => {
 
     it('should use crypto.randomUUID when available', () => {
       // Arrange
-      const mockUUID = '550e8400-e29b-41d4-a716-446655440000'
+      const mockUUID = '550e8400-e29b-41d4-a716-446655440000' as `${string}-${string}-${string}-${string}-${string}`
       const cryptoSpy = vi.spyOn(crypto, 'randomUUID').mockReturnValue(mockUUID)
 
       // Act
@@ -387,10 +387,10 @@ describe('kitchenAuth store', () => {
 
     it('should handle crypto.randomUUID returning valid formats', () => {
       // Arrange
-      const testUUIDs = [
-        '550e8400-e29b-41d4-a716-446655440000',
-        '00000000-0000-0000-0000-000000000000',
-        'ffffffff-ffff-ffff-ffff-ffffffffffff',
+      const testUUIDs: Array<`${string}-${string}-${string}-${string}-${string}`> = [
+        '550e8400-e29b-41d4-a716-446655440000' as `${string}-${string}-${string}-${string}-${string}`,
+        '00000000-0000-0000-0000-000000000000' as `${string}-${string}-${string}-${string}-${string}`,
+        'ffffffff-ffff-ffff-ffff-ffffffffffff' as `${string}-${string}-${string}-${string}-${string}`,
       ]
 
       for (const uuid of testUUIDs) {

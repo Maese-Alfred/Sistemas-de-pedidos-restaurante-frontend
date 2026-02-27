@@ -1,6 +1,6 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 import * as mockApi from '@/api/mock'
-import type { CreateOrderRequest, Order, OrderStatus } from '@/api/contracts'
+import type { CreateOrderRequest, OrderStatus } from '@/api/contracts'
 
 // ════════════════════════════════════════════════════════════════════════════
 // SETUP
@@ -62,7 +62,7 @@ describe('Mock API', () => {
       const result = await mockApi.mockGetMenu()
 
       // Assert
-      expect(result.every((p) => p.price > 0)).toBe(true)
+      expect(result.every((p) => (p.price ?? 0) > 0)).toBe(true)
     })
 
     it('should return consistent results across calls', async () => {
@@ -329,7 +329,6 @@ describe('Mock API', () => {
     it('should update and have valid timestamp when status changes', async () => {
       // Arrange
       const created = await mockApi.mockCreateOrder(createOrderRequest)
-      const original = await mockApi.mockGetOrder(created.id)
 
       // Act
       const updated = await mockApi.mockPatchOrderStatus(created.id, 'READY')
@@ -587,7 +586,7 @@ describe('Mock API', () => {
 
       // Act
       const created = await mockApi.mockCreateOrder(request)
-      const retrieved1 = await mockApi.mockGetOrder(created.id)
+      await mockApi.mockGetOrder(created.id)
       await mockApi.mockPatchOrderStatus(created.id, 'IN_PREPARATION')
       const retrieved2 = await mockApi.mockGetOrder(created.id)
 

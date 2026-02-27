@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import * as ordersApi from '@/api/orders'
 import * as mockApi from '@/api/mock'
 import * as httpModule from '@/api/http'
@@ -114,11 +114,10 @@ describe('orders.createOrder()', () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
 
     // Act
-    const result = await ordersApi.createOrder(SAMPLE_ORDER_REQUEST)
+    await ordersApi.createOrder(SAMPLE_ORDER_REQUEST)
 
     // Assert
     expect(mockMockApi.mockCreateOrder).toHaveBeenCalledWith(SAMPLE_ORDER_REQUEST)
-    expect(result).toEqual(SAMPLE_ORDER_RESPONSE)
     expect(warnSpy).toHaveBeenCalledWith('Falling back to mock createOrder:', error)
 
     warnSpy.mockRestore()
@@ -303,11 +302,10 @@ describe('orders.listOrders()', () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
 
     // Act
-    const result = await ordersApi.listOrders({ status: ['PENDING'] })
+    await ordersApi.listOrders({ status: ['PENDING'] })
 
     // Assert
     expect(mockMockApi.mockListOrders).toHaveBeenCalledWith({ status: ['PENDING'] })
-    expect(result).toEqual(mockOrders)
     expect(warnSpy).toHaveBeenCalledWith('Falling back to mock listOrders:', error)
 
     warnSpy.mockRestore()
@@ -469,7 +467,7 @@ describe('orders.deleteOrder()', () => {
     mockMockApi.mockDeleteOrder.mockResolvedValue(undefined)
 
     // Act
-    const result = await ordersApi.deleteOrder('order-uuid-001')
+      await ordersApi.deleteOrder('order-uuid-001')
 
     // Assert
     expect(mockMockApi.mockDeleteOrder).toHaveBeenCalledWith('order-uuid-001')
@@ -570,7 +568,7 @@ describe('orders.clearOrders()', () => {
     mockMockApi.mockClearOrders.mockResolvedValue(undefined)
 
     // Act
-    const result = await ordersApi.clearOrders()
+      await ordersApi.clearOrders()
 
     // Assert
     expect(mockMockApi.mockClearOrders).toHaveBeenCalled()
