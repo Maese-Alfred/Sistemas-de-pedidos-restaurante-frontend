@@ -22,7 +22,17 @@ export default defineConfig({
         "**/*.d.ts",
         "src/main.tsx",
         "src/assets/**",
+        "src/api/http.ts", // HTTP wrapper - not critical to test
+        "src/domain/orderStatus.ts", // Constants and enums - simple mappings
       ],
+      // ── Quality gates ─────────────────────────────────
+      // Tests fail if coverage drops below these thresholds
+      thresholds: {
+        lines: 70,
+        functions: 70,
+        branches: 70,
+        statements: 70,
+      },
     },
   },
 });
