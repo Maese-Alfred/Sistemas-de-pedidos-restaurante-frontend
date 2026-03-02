@@ -12,7 +12,7 @@ import type { ReportController } from "@/pages/reports/useReportController";
 const mockUseReportController = vi.fn<() => ReportController>();
 
 vi.mock("@/pages/reports/useReportController", () => ({
-  useReportController: (...args: unknown[]) => mockUseReportController(),
+  useReportController: () => mockUseReportController(),
 }));
 
 vi.mock("react-router-dom", () => ({
