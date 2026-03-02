@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
         interval: 100,
       },
       fs: {
-        allow: ["/app"],
+        allow: [process.cwd(), "/app"],
       },
       ...(allowedHosts.length > 0 ? { allowedHosts } : {}),
     },
